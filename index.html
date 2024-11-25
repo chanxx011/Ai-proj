@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>의료 보건 도움 프로그램</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <div class="header">
+            <div class="logo">
+                <img src="./images/Logo.jpg" width="170" height="100" alt="로고">
+            </div>
+            <div class="navigation">
+                <a href="help.html">Help</a>
+            </div>
+            <div class="warning-button">
+                <button onclick="showEmergencyHelp()">⚠️ Warning</button>
+            </div>
+            <div id="patient-status-selection" style="display: none;">
+                <h2>환자의 상태를 선택하세요:</h2>
+                <label><input type="checkbox" name="status" value="호흡 곤란"> 호흡 곤란</label><br>
+                <label><input type="checkbox" name="status" value="의식 없음"> 의식 없음</label><br>
+                <label><input type="checkbox" name="status" value="출혈"> 출혈</label><br>
+                <label><input type="checkbox" name="status" value="가슴 통증"> 가슴 통증</label><br>
+                <button onclick="handlePatientStatus()">선택 완료</button>
+            </div>
+        </div>
+        <h2>TIP! 증상을 자세히 선택할수록 조금 더 정확한 병명을 알 수 있습니다.</h2><hr>
+        <h1>증상 선택</h1>
+        <div id="category-container">
+            <button onclick="toggleCategory('respiratory')">호흡기 질환</button>
+            <button onclick="toggleCategory('digestive')">소화기 질환</button>
+            <button onclick="toggleCategory('nervous')">신경계 질환</button>
+            <button onclick="toggleCategory('general')">일반 증상</button>
+        </div>
+
+        <div id="symptom-selection">
+            <div id="respiratory" class="symptom-category" style="display: none;">
+                <h2>호흡기 질환</h2>
+                <button onclick="selectSymptom('기침')">
+                    <img src="./images/mask.jpg" alt="기침 아이콘" width="100" height="100">
+                    <p>기침</p>
+                </button>
+                <button onclick="selectSymptom('인후통')">
+                    <img src="./images/throatache.jpg" alt="인후통 아이콘" width="100" height="100">
+                    <p>인후통</p>
+                </button>
+                <button onclick="selectSymptom('콧물')">
+                    <img src="./images/runnynose.jpg" alt="콧물 아이콘" width="100" height="100">
+                    <p>콧물</p>
+                </button>
+                <button onclick="selectSymptom('호흡 곤란')">
+                    <img src="./images/breathache.jpg" alt="호흡곤란 아이콘" width="100" height="100">
+                    <p>호흡곤란</p>
+                </button>
+            </div>
+            
+            <div id="digestive" class="symptom-category" style="display: none;">
+                <h2>소화기 질환</h2>
+                <button onclick="selectSymptom('복통')">
+                    <img src="./images/stomache.jpg" alt="복통 아이콘" width="100" height="100">
+                    <p>복통</p>
+                </button>
+                <button onclick="selectSymptom('구토')">
+                    <img src="./images/vomit.jpg" alt="구토 아이콘" width="100" height="100">
+                    <p>구토</p>
+                </button>
+                <button onclick="selectSymptom('소화불량')">
+                    <img src="./images/indigestion.jpg" alt="소화불량 아이콘" width="100" height="100">
+                    <p>소화불량</p>
+                </button>
+            </div>
+
+            <div id="nervous" class="symptom-category" style="display: none;">
+                <h2>신경계 질환</h2>
+                <button onclick="selectSymptom('두통')">
+                    <img src="./images/headache.jpg" alt="두통 아이콘" width="100" height="100">
+                    <p>두통</p>
+                </button>
+                <button onclick="selectSymptom('언어 장애')">
+                    <img src="./images/language.jpg" alt="언어장애 아이콘" width="100" height="100">
+                    <p>언어 장애</p>
+                </button>
+                <button onclick="selectSymptom('시력 저하')">
+                    <img src="./images/sight.jpg" alt="시력저하 아이콘" width="100" height="100">
+                    <p>시력 저하</p>
+                </button>
+                <button onclick="selectSymptom('의식 저하')">
+                    <img src="./images/mental.jpg" alt="의식저하 아이콘" width="100" height="100">
+                    <p>의식 저하</p>
+                </button>
+            </div>
+
+            <div id="general" class="symptom-category" style="display: none;">
+                <h2>일반 증상</h2>
+                <button onclick="selectSymptom('발열')">
+                    <img src="./images/fever.jpg" alt="발열 아이콘" width="100" height="100">
+                    <p>발열</p>
+                </button>
+                <button onclick="selectSymptom('오한')">
+                    <img src="./images/cold.jpg" alt="오한 아이콘" width="100" height="100">
+                    <p>오한</p>
+                </button>
+                <button onclick="selectSymptom('근육통')">
+                    <img src="./images/muscleache.jpg" alt="근육통 아이콘" width="100" height="100">
+                    <p>근육통</p>
+                </button>
+                <button onclick="selectSymptom('고열')">
+                    <img src="./images/highfever.jpg" alt="고열 아이콘" width="100" height="100">
+                    <p>고열</p>
+                </button>
+                <button onclick="selectSymptom('피로')">
+                    <img src="./images/tired.jpg" alt="피로 아이콘" width="100" height="100">
+                    <p>피로</p>
+                </button>
+                <button onclick="selectSymptom('가슴 통증')">
+                    <img src="./images/heartache.jpg" alt="가슴통증 아이콘" width="100" height="100">
+                    <p>가슴통증</p>
+                </button>
+                <button onclick="selectSymptom('다뇨')">
+                    <img src="./images/manypee.jpg" alt="다뇨 아이콘" width="100" height="100">
+                    <p>다뇨</p>
+                </button>
+                <button onclick="selectSymptom('갈증')">
+                    <img src="./images/thirsty.jpg" alt="갈증 아이콘" width="100" height="100">
+                    <p>갈증</p>
+                </button>
+                <button onclick="selectSymptom('체중 감소')">
+                    <img src="./images/weight.jpg" alt="체중감소 아이콘" width="100" height="100">
+                    <p>체중감소</p>
+                </button>
+                <button onclick="selectSymptom('혈뇨')">
+                    <img src="./images/bloodpee.jpg" alt="혈뇨 아이콘" width="100" height="100">
+                    <p>혈뇨</p>
+                </button>
+                <button onclick="selectSymptom('비정상적인 출혈')">
+                    <img src="./images/bloody.jpg" alt="출혈 아이콘" width="100" height="100">
+                    <p>비정상적인 출혈</p>
+                </button>
+                <button onclick="selectSymptom('소변 감소')">
+                    <img src="./images/smallpee.jpg" alt="소변감소 아이콘" width="100" height="100">
+                    <p>소변감소</p>
+                </button>
+                <button onclick="selectSymptom('빠른 맥박')">
+                    <img src="./images/fastheart.jpg" alt="빠른맥박 아이콘" width="100" height="100">
+                    <p>빠른 맥박</p>
+                </button>
+            </div>
+        </div>
+        <div id="symptom-summary" style="display: none;">
+            <h2>선택한 증상:</h2>
+            <p id="selected-symptoms"></p>
+            <button onclick="getRecommendations()"><병 추측하기></button>
+        </div>
+        <div id="recommendation-result" style="display: none;">
+            <h3>추측된 병:</h3>
+            <p id="disease-recommendation"></p>
+            <h4>설명:</h4>
+            <p id="disease-description"></p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
